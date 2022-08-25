@@ -1,0 +1,30 @@
+.dropdown-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    top: 80px;
+    right: 20px;
+    z-index: 5;
+    animation: fade-in 1s ease;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 3%;
+    
+    .menu-links {
+        padding: 7px;
+
+        &:hover {
+            font-weight: 800;
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}

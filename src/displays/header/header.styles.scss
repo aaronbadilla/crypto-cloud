@@ -1,0 +1,32 @@
+.header {
+    width: 90%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 3%;
+    padding: 10px;
+
+    @media only screen and (max-width: 735px) {
+        margin: 0 auto
+      }
+
+    .site-name {
+        color: #A6E3E9;
+    }
+
+    .utilities-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 90%;
+
+        @media only screen and (max-width: 659px) {
+            display: none;
+          }
+    }
+}

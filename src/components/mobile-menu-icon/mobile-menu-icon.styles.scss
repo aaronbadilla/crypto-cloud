@@ -1,0 +1,28 @@
+.mobile-menu {
+    padding: 10px;
+    flex-direction: column;
+    border-style: none;
+    border-radius: 3%;
+    background-color: white;
+    transition: 1s ease;
+
+    @media only screen and (min-width: 660px) {
+        display: none;
+      }
+
+    .line {
+        border-top: solid;
+        border-color: #ffaabb;
+        border-width: 3px;
+        height: 2px;
+        display: block;
+        margin: 5px;
+        width: 30px;
+    }
+
+    &:hover {
+        background-color: #A6E3E9;;
+        transition: 1s ease;
+        cursor: pointer
+    }
+}

@@ -1,0 +1,30 @@
+.utility {
+    margin: 5px 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    height: auto;
+    width: 180px;
+    text-align: center;
+    color: #ffaabb;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 3%;
+    transition: 1s ease;
+    border: none;
+    background-color: white;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #A6E3E9;
+    }
+
+    .utility-text {
+        transition: 1s ease;
+        padding: 15px;
+        height: 100%;
+
+        &:hover {
+            transform: scale(1.15);
+            transition: 1s ease;
+        }
+    }
+}

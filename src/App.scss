@@ -1,0 +1,17 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95vw;
+    margin: 50px auto;
+    border-radius: 2%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    min-height: 100vh;
+
+    @media only screen and (max-width: 735px) {
+        box-shadow: none;
+        width: 100%;
+        margin: 0 auto
+      }
+}
