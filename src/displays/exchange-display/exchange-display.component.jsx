@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { ExchangeContext } from "../../contexts/exchange.context";
 import { CardDataContext } from "../../contexts/card-data.context";
 import { NavigationContext } from "../../contexts/navigation.context";
+import { UtilityContext } from "../../contexts/utility.context";
 import AssetCard from "../../components/asset-card/asset-card.component";
 import SearchBox from "../../components/search-box/search-box.component";
 import LoadingWrapperCard from "../../components/loading-wrapper/loading-wrapper-card.hoc";
@@ -19,6 +20,7 @@ const ExchangeDisplay = () => {
 		useContext(ExchangeContext);
 	const { cryptoCardData } = useContext(CardDataContext);
 	const { closeDisplayExchange } = useContext(NavigationContext);
+	const { filteredCryptos } = useContext(UtilityContext);
 
 	useEffect(() => {
 		const newCryptoToExchange = cryptoCardData.find(
@@ -69,16 +71,16 @@ const ExchangeDisplay = () => {
 	}, [cryptoCardData, exchangeRates]);
 
 	// search crypto rates
-	useEffect(() => {
-		const newFilteredRates = mappedRateData.filter((crypto) =>
-			crypto.name.toLowerCase().includes(ratesSearchField)
-		);
-		setFilteredRates(newFilteredRates);
-	}, [mappedRateData, ratesSearchField, exchangeRates]);
+	// useEffect(() => {
+	// 	const newFilteredRates = mappedRateData.filter((crypto) =>
+	// 		crypto.name.toLowerCase().includes(ratesSearchField)
+	// 	);
+	// 	setFilteredRates(newFilteredRates);
+	// }, [mappedRateData, ratesSearchField, exchangeRates]);
 
-	const onSearchChange = (event) => {
-		setRatesSearchField(event.target.value.toLowerCase());
-	};
+	// const onSearchChange = (event) => {
+	// 	setRatesSearchField(event.target.value.toLowerCase());
+	// };
 
 	// Close exchange display
 	const handleCloseExchange = () => {
@@ -98,16 +100,18 @@ const ExchangeDisplay = () => {
 		}
 	}, [filteredRates]);
 
+	console.log(filteredRates);
+
 	return (
 		<>
 			<div className="exchange-container">
 				<div className="exchange-utility-container">
 					<div className="utility-container">
-						<SearchBox
+						{/* <SearchBox
 							placeholder="Search Rates"
 							className="rate-search"
 							onChangeHandler={onSearchChange}
-						/>
+						/> */}
 						<button
 							type="button"
 							aria-label="get more exchange rates"
@@ -129,7 +133,7 @@ const ExchangeDisplay = () => {
 					<h1 className="equals">=</h1>
 				</div>
 				<div className="exchanged-crypto-container">
-					{filteredRates
+					{filteredCryptos(mappedRateData)
 						.filter((_, index) => index <= rateMax && index >= rateMin)
 						.map(({ rate, asset_id, ...cardAttributes }) => (
 							<div key={asset_id} className="exchanged-crypto">
