@@ -7,16 +7,19 @@ import { CardDataProvider } from "./contexts/card-data.context";
 import { ExchangeProvider } from "./contexts/exchange.context";
 import { FavoritesProvider } from "./contexts/favorites.context";
 import { NavigationProvider } from "./contexts/navigation.context";
+import { UtilityProvider } from "./contexts/utility.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<NavigationProvider>
 		<CardDataProvider>
-			<ExchangeProvider>
-				<FavoritesProvider>
-					<App />
-				</FavoritesProvider>
-			</ExchangeProvider>
+			<UtilityProvider>
+				<ExchangeProvider>
+					<FavoritesProvider>
+						<App />
+					</FavoritesProvider>
+				</ExchangeProvider>
+			</UtilityProvider>
 		</CardDataProvider>
 	</NavigationProvider>
 );

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NavigationContext } from "../../contexts/navigation.context";
-import Favorites from "../../components/favorites/favorites.component";
+import FavoritesCards from "../../components/favorites-cards/favorites-cards.component";
 import CloseButton from "../../components/close-button/close-button.component";
 const FavoritesContainer = () => {
 	const { closeDisplayFavorites } = useContext(NavigationContext);
@@ -14,7 +14,7 @@ const FavoritesContainer = () => {
 				/>
 			</div>
 			<div className="favorites-cards">
-				<Favorites />
+				<FavoritesCards />
 			</div>
 		</div>
 	);

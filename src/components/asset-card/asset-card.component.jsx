@@ -36,7 +36,6 @@ const AssetCard = ({
 
 	useEffect(() => {
 		if (favorites.includes(asset_id)) {
-			console.log("function ran");
 			return setLiked(true);
 		} else setLiked(false);
 	}, [favorites]);

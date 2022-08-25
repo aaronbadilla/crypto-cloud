@@ -12,8 +12,6 @@ export const FavoritesProvider = ({ children }) => {
 	const [favorites, setFavorites] = useState([]);
 	const [displayFavorites, setDisplayFavorites] = useState(false);
 
-	console.log(displayFavorites);
-
 	const addCryptoToFavorites = (assetId) => {
 		setFavorites((prevFavorites) => [...prevFavorites, assetId]);
 	};
@@ -23,7 +21,6 @@ export const FavoritesProvider = ({ children }) => {
 			const newFavorites = prevFavorites.filter(
 				(favorite) => assetId !== favorite
 			);
-			console.log(newFavorites);
 			return newFavorites;
 		});
 	};

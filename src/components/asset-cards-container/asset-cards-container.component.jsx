@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UtilityContext } from "../../contexts/utility.context";
+import { CardDataContext } from "../../contexts/card-data.context";
 import "./asset-cards-container.styles.scss";
 import AssetCard from "../asset-card/asset-card.component";
 import LoadingWrapper from "../loading-wrapper/loading-wrapper.hoc";
 
 const startingDisplay = 20;
 
-const AssetCardsContainer = ({ filteredCryptos, loading, searchField }) => {
+const AssetCardsContainer = ({ loading, searchField }) => {
 	const [displayLimiter, setDisplayLimiter] = useState(startingDisplay);
+	const { filteredCryptos } = useContext(UtilityContext);
+	const { cryptoCardData } = useContext(CardDataContext);
 
 	const handleLoadClick = () => {
 		setDisplayLimiter(
@@ -21,7 +25,7 @@ const AssetCardsContainer = ({ filteredCryptos, loading, searchField }) => {
 	return (
 		<div className="asset-cards-container">
 			<LoadingWrapper loading={loading}>
-				{filteredCryptos
+				{filteredCryptos(cryptoCardData)
 					.filter((_, index) => index < displayLimiter)
 					.map(({ asset_id, ...otherProps }) => {
 						return (

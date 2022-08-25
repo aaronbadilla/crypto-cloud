@@ -73,7 +73,6 @@ const ExchangeDisplay = () => {
 		const newFilteredRates = mappedRateData.filter((crypto) =>
 			crypto.name.toLowerCase().includes(ratesSearchField)
 		);
-		console.log(mappedRateData);
 		setFilteredRates(newFilteredRates);
 	}, [mappedRateData, ratesSearchField, exchangeRates]);
 
