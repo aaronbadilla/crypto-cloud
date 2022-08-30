@@ -1,9 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavigationContext } from "../../contexts/navigation.context";
-import FavoritesCards from "../../components/favorites-cards/favorites-cards.component";
+import { UtilityContext } from "../../contexts/utility.context";
+import { FavoritesContext } from "../../contexts/favorites.context";
 import CloseButton from "../../components/close-button/close-button.component";
+import FavoritesCards from "../../components/favorites-cards/favorites-cards.component";
 const FavoritesContainer = () => {
 	const { closeDisplayFavorites } = useContext(NavigationContext);
+	const { filteredCryptos, searchCryptos, searchField } =
+		useContext(UtilityContext);
+	const { favorites } = useContext(FavoritesContext);
+
+	useEffect(() => {
+		searchCryptos(favorites);
+	}, [favorites, searchField]);
 
 	return (
 		<div className="favorites-container">
@@ -14,7 +23,7 @@ const FavoritesContainer = () => {
 				/>
 			</div>
 			<div className="favorites-cards">
-				<FavoritesCards />
+				<FavoritesCards filteredCryptos={filteredCryptos} />
 			</div>
 		</div>
 	);

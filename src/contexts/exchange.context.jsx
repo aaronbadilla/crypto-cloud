@@ -8,25 +8,30 @@ export const ExchangeContext = createContext({
 });
 
 export const ExchangeProvider = ({ children }) => {
-	const [assetId, setAssetId] = useState(null);
+	const [exchangeBase, setExchangeBase] = useState(null);
 	const [exchangeRates, setExchangeRates] = useState({});
 	const [exchangeLoading, setExchangeLoading] = useState(false);
 	const [exchangeError, setExchangeError] = useState(false);
 
-	const getExchangeRates = async (assetId) => {
-		const exchangeData = await getCryptoData(`v1/exchangerate/${assetId}`);
+	const getExchangeRates = async (asset_id) => {
+		const exchangeData = await getCryptoData(`v1/exchangerate/${asset_id}`);
 		await setExchangeRates(exchangeData);
+	};
+
+	const createExchange = async (cardAttributes) => {
+		const asset_id = cardAttributes.asset_id;
+		await getExchangeRates(asset_id);
+		await setExchangeBase(cardAttributes);
 		setExchangeLoading(false);
 	};
 
 	const value = {
+		createExchange,
 		exchangeRates,
 		setExchangeRates,
 		exchangeLoading,
 		setExchangeLoading,
-		setAssetId,
-		assetId,
-		getExchangeRates,
+		exchangeBase,
 	};
 
 	return (

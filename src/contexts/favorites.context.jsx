@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export const FavoritesContext = createContext({
-	favorites: {},
+	favorites: [],
 	setFavorites: () => [],
 	addCryptoToFavorites: () => [],
 	displayFavorites: false,
@@ -9,25 +9,33 @@ export const FavoritesContext = createContext({
 });
 
 export const FavoritesProvider = ({ children }) => {
+	const [favoritesLoading, setFavoritesLoading] = useState(false);
 	const [favorites, setFavorites] = useState([]);
 	const [displayFavorites, setDisplayFavorites] = useState(false);
 
-	const addCryptoToFavorites = (assetId) => {
-		setFavorites((prevFavorites) => [...prevFavorites, assetId]);
+	const addCryptoToFavorites = (cardAttributes) => {
+		cardAttributes.favorite = true;
+		setFavorites((prevFavorites) => [...prevFavorites, cardAttributes]);
 	};
 
 	const removeCryptoFromFavorites = (assetId) => {
 		setFavorites((prevFavorites) => {
 			const newFavorites = prevFavorites.filter(
-				(favorite) => assetId !== favorite
+				(favorite) => assetId !== favorite.asset_id
 			);
 			return newFavorites;
 		});
 	};
 
+	const favoritesIds = favorites.map((favorite) => {
+		return favorite.asset_id;
+	});
+
 	const value = {
 		favorites,
-		setFavorites,
+		favoritesIds,
+		favoritesLoading,
+		setFavoritesLoading,
 		addCryptoToFavorites,
 		removeCryptoFromFavorites,
 		displayFavorites,

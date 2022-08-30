@@ -4,17 +4,23 @@ import MobileMenuIcon from "../../components/mobile-menu-icon/mobile-menu-icon.c
 import DropDownMenu from "../../components/drop-down-menu/drop-down-menu.component";
 import MenuButton from "../../components/menu-button/menu-button.component";
 import { NavigationContext } from "../../contexts/navigation.context";
+import { UtilityContext } from "../../contexts/utility.context";
 import { useState, useContext } from "react";
+import { FavoritesContext } from "../../contexts/favorites.context";
 
-const Header = ({ sortByDailyVolume, sortByPrice, ...otherProps }) => {
+const Header = ({ ...otherProps }) => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { openDisplayFavorites } = useContext(NavigationContext);
+	const { sortByDailyVolume, sortByPrice, searchCryptos } =
+		useContext(UtilityContext);
+	const { favorites } = useContext(FavoritesContext);
 
 	const handleMenuToggle = () => {
 		setToggleMenu(toggleMenu ? false : true);
 	};
 
-	const toggleFavorites = () => {
+	const toggleFavorites = async () => {
+		await searchCryptos(favorites);
 		openDisplayFavorites();
 	};
 
