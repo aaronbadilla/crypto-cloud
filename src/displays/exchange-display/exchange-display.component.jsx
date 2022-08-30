@@ -5,17 +5,14 @@ import { CardDataContext } from "../../contexts/card-data.context";
 import { NavigationContext } from "../../contexts/navigation.context";
 import { UtilityContext } from "../../contexts/utility.context";
 import AssetCard from "../../components/asset-card/asset-card.component";
-import SearchBox from "../../components/search-box/search-box.component";
+import ExchangeCards from "../../components/exchange-cards/exchange-cards.component";
 import LoadingWrapperCard from "../../components/loading-wrapper/loading-wrapper-card.hoc";
 import CloseButton from "../../components/close-button/close-button.component";
 import { FavoritesContext } from "../../contexts/favorites.context";
 
 const ExchangeDisplay = () => {
-	const [cryptoToExchange, setCryptoToExchange] = useState({});
 	const [rateMin, setRateMin] = useState(0);
 	const [rateMax, setRateMax] = useState(3);
-	const [ratesSearchField, setRatesSearchField] = useState("");
-	const [filteredRates, setFilteredRates] = useState([]);
 	const [mappedRateData, setMappedRateData] = useState([]);
 	const { exchangeRates, exchangeBase } = useContext(ExchangeContext);
 	const { cryptoCardData } = useContext(CardDataContext);
@@ -23,20 +20,6 @@ const ExchangeDisplay = () => {
 	const { filteredCryptos, searchField, searchCryptos } =
 		useContext(UtilityContext);
 	const { favoritesIds } = useContext(FavoritesContext);
-
-	// Format exchange rate numbers
-	const shortPriceWithCommas = (priceUSD) => {
-		if (!priceUSD) {
-			return "No price available";
-		}
-		if (priceUSD < 1) {
-			return `${priceUSD.toFixed(9)}`;
-		}
-		return `${priceUSD
-			.toFixed(2)
-			.toString()
-			.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-	};
 
 	// create new data object to map onto cards
 	useEffect(() => {
@@ -59,18 +42,6 @@ const ExchangeDisplay = () => {
 		searchCryptos(mappedRateData);
 	}, [mappedRateData, searchField]);
 
-	// search crypto rates
-	// useEffect(() => {
-	// 	const newFilteredRates = mappedRateData.filter((crypto) =>
-	// 		crypto.name.toLowerCase().includes(ratesSearchField)
-	// 	);
-	// 	setFilteredRates(newFilteredRates);
-	// }, [mappedRateData, ratesSearchField, exchangeRates]);
-
-	// const onSearchChange = (event) => {
-	// 	setRatesSearchField(event.target.value.toLowerCase());
-	// };
-
 	// Close exchange display
 	const handleCloseExchange = () => {
 		closeDisplayExchange();
@@ -82,19 +53,11 @@ const ExchangeDisplay = () => {
 		setRateMax((prevRate) => prevRate + 4);
 	};
 
-	console.log(exchangeBase);
-	console.log(favoritesIds);
-
 	return (
 		<>
 			<div className="exchange-container">
 				<div className="exchange-utility-container">
 					<div className="utility-container">
-						{/* <SearchBox
-							placeholder="Search Rates"
-							className="rate-search"
-							onChangeHandler={onSearchChange}
-						/> */}
 						<button
 							type="button"
 							aria-label="get more exchange rates"
@@ -117,24 +80,12 @@ const ExchangeDisplay = () => {
 				<div className="equals-container">
 					<h1 className="equals">=</h1>
 				</div>
-				<div className="exchanged-crypto-container">
-					{filteredCryptos
-						.filter((_, index) => index <= rateMax && index >= rateMin)
-						.map(({ rate, asset_id, ...cardAttributes }) => {
-							const favorite = favoritesIds.includes(asset_id);
-							return (
-								<div key={asset_id} className="exchanged-crypto">
-									<h3>{shortPriceWithCommas(rate)}</h3>
-									<AssetCard
-										size="small"
-										asset_id={asset_id}
-										favorite={favorite}
-										{...cardAttributes}
-									/>
-								</div>
-							);
-						})}
-				</div>
+				<ExchangeCards
+					filteredCryptos={filteredCryptos}
+					rateMax={rateMax}
+					rateMin={rateMin}
+					favoritesIds={favoritesIds}
+				/>
 			</div>
 		</>
 	);

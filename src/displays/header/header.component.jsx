@@ -39,7 +39,7 @@ const Header = ({ ...otherProps }) => {
 				) : null}
 				<MobileMenuIcon handleClick={handleMenuToggle} />
 				<div className="utilities-container">
-					<SearchBox {...otherProps} />
+					<SearchBox placeholder="Search" />
 					<MenuButton
 						onClickHandler={sortByDailyVolume}
 						aria="Sort By Volume"
