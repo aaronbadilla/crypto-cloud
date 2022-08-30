@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from "react";
 import Header from "./displays/header/header.component";
 import NavigationContainer from "./navigation/navigation.nav";
 import { CardDataContext } from "./contexts/card-data.context";
-import { UtilityContext } from "./contexts/utility.context";
 
 function App() {
 	const [filteredCryptos, setFilteredCryptos] = useState([]);

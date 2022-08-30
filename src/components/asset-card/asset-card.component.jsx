@@ -4,16 +4,13 @@ import { NavigationContext } from "../../contexts/navigation.context";
 import { ExchangeContext } from "../../contexts/exchange.context";
 import { FavoritesContext } from "../../contexts/favorites.context";
 
-const AssetCard = ({
-	name,
-	imageUrl,
-	price_usd,
-	volume_1day_usd,
-	asset_id,
-	size,
-}) => {
-	const { getExchangeRates, setExchangeLoading } = useContext(ExchangeContext);
-	const { addCryptoToFavorites, removeCryptoFromFavorites, favorites } =
+const AssetCard = ({ favorite, ...cardAttributes }) => {
+	console.log(cardAttributes);
+	const { name, imageUrl, price_usd, volume_1day_usd, asset_id, size } =
+		cardAttributes;
+
+	const { createExchange, setExchangeLoading } = useContext(ExchangeContext);
+	const { addCryptoToFavorites, removeCryptoFromFavorites } =
 		useContext(FavoritesContext);
 	const { openDisplayExchange } = useContext(NavigationContext);
 	const [drawer, setDrawer] = useState(false);
@@ -35,10 +32,10 @@ const AssetCard = ({
 	}).format(volume_1day_usd);
 
 	useEffect(() => {
-		if (favorites.includes(asset_id)) {
+		if (favorite) {
 			return setLiked(true);
 		} else setLiked(false);
-	}, [favorites]);
+	}, [favorite]);
 
 	const handleClick = () => {
 		setDrawer(drawer ? false : true);
@@ -46,13 +43,13 @@ const AssetCard = ({
 
 	const handleExchangeClick = () => {
 		setExchangeLoading(true);
-		getExchangeRates(asset_id);
+		createExchange(cardAttributes);
 		openDisplayExchange();
 	};
 
 	const handleFavoriteClick = () => {
 		if (!liked) {
-			return addCryptoToFavorites(asset_id);
+			return addCryptoToFavorites(cardAttributes);
 		}
 		if (liked) {
 			return removeCryptoFromFavorites(asset_id);
