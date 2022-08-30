@@ -11,6 +11,7 @@ export const UtilityProvider = ({ children }) => {
 	const [searchField, setSearchField] = useState("");
 	const [filteredCryptos, setFilteredCryptos] = useState([]);
 
+	// SEARCH FUNCTIONS
 	const searchCryptos = (cryptosToSearch) => {
 		const newFilteredCryptos = cryptosToSearch.filter((crypto) => {
 			return crypto.name.toLowerCase().includes(searchField);
@@ -21,6 +22,8 @@ export const UtilityProvider = ({ children }) => {
 	const onSearchChange = (event) => {
 		setSearchField(event.target.value.toLowerCase());
 	};
+
+	// SORT FUNCTIONS
 
 	const sortByDailyVolume = () => {
 		setFilteredCryptos((prevFilteredCryptos) => {

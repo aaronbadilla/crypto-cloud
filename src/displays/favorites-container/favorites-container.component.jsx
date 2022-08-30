@@ -1,3 +1,4 @@
+import "./favorites-container.styles.scss";
 import { useContext, useEffect } from "react";
 import { NavigationContext } from "../../contexts/navigation.context";
 import { UtilityContext } from "../../contexts/utility.context";
@@ -23,7 +24,11 @@ const FavoritesContainer = () => {
 				/>
 			</div>
 			<div className="favorites-cards">
-				<FavoritesCards filteredCryptos={filteredCryptos} />
+				{favorites.length === 0 ? (
+					<h1 className="empty-message">No favorites added yet!</h1>
+				) : (
+					<FavoritesCards filteredCryptos={filteredCryptos} />
+				)}
 			</div>
 		</div>
 	);
