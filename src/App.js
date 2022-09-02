@@ -5,7 +5,7 @@ import NavigationContainer from "./navigation/navigation.nav";
 import { CardDataContext } from "./contexts/card-data.context";
 
 function App() {
-	const { cryptoCardData, cardDataLoading } = useContext(CardDataContext);
+	const { cardDataLoading } = useContext(CardDataContext);
 
 	return (
 		<div className="app">

@@ -14,26 +14,22 @@ const ExchangeCards = ({ filteredCryptos, rateMax, rateMin, favoritesIds }) => {
 			.toString()
 			.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 	};
-	return (
-		<div className="exchanged-crypto-container">
-			{filteredCryptos
-				.filter((_, index) => index <= rateMax && index >= rateMin)
-				.map(({ rate, asset_id, ...cardAttributes }) => {
-					const favorite = favoritesIds.includes(asset_id);
-					return (
-						<div key={asset_id} className="exchanged-crypto">
-							<h3>{shortPriceWithCommas(rate)}</h3>
-							<AssetCard
-								size="small"
-								asset_id={asset_id}
-								favorite={favorite}
-								{...cardAttributes}
-							/>
-						</div>
-					);
-				})}
-		</div>
-	);
+	return filteredCryptos
+		.filter((_, index) => index <= rateMax && index >= rateMin)
+		.map(({ rate, asset_id, ...cardAttributes }) => {
+			const favorite = favoritesIds.includes(asset_id);
+			return (
+				<div key={asset_id} className="exchanged-crypto">
+					<h3>{shortPriceWithCommas(rate)}</h3>
+					<AssetCard
+						size="small"
+						asset_id={asset_id}
+						favorite={favorite}
+						{...cardAttributes}
+					/>
+				</div>
+			);
+		});
 };
 
 export default ExchangeCards;

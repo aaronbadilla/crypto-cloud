@@ -6,7 +6,7 @@ import { NavigationContext } from "../../contexts/navigation.context";
 import { UtilityContext } from "../../contexts/utility.context";
 import AssetCard from "../../components/asset-card/asset-card.component";
 import ExchangeCards from "../../components/exchange-cards/exchange-cards.component";
-import LoadingWrapperCard from "../../components/loading-wrapper/loading-wrapper-card.hoc";
+import LoadingWrapper from "../../components/loading-wrapper/loading-wrapper.hoc";
 import CloseButton from "../../components/close-button/close-button.component";
 import { FavoritesContext } from "../../contexts/favorites.context";
 
@@ -14,32 +14,39 @@ const ExchangeDisplay = () => {
 	const [rateMin, setRateMin] = useState(0);
 	const [rateMax, setRateMax] = useState(3);
 	const [mappedRateData, setMappedRateData] = useState([]);
-	const { exchangeRates, exchangeBase } = useContext(ExchangeContext);
+	const { exchangeRates, exchangeBase, exchangeLoading } =
+		useContext(ExchangeContext);
 	const { cryptoCardData } = useContext(CardDataContext);
 	const { closeDisplayExchange } = useContext(NavigationContext);
 	const { filteredCryptos, searchField, searchCryptos } =
 		useContext(UtilityContext);
 	const { favoritesIds } = useContext(FavoritesContext);
 
+	console.log(exchangeLoading);
+
 	// create new data object to map onto cards
 	useEffect(() => {
-		const newMappedRateData = cryptoCardData.map((crypto) => {
-			const exchangeRate = exchangeRates.rates.find(
-				(rate) => rate.asset_id_quote === crypto.asset_id
+		if (!exchangeLoading) {
+			const newMappedRateData = cryptoCardData.map((crypto) => {
+				const exchangeRate = exchangeRates.rates.find(
+					(rate) => rate.asset_id_quote === crypto.asset_id
+				);
+				if (exchangeRate === undefined) {
+					return null;
+				}
+				return { ...crypto, rate: exchangeRate.rate };
+			});
+			const filteredNewMappedRateData = newMappedRateData.filter(
+				(rate) => rate !== null
 			);
-			if (exchangeRate === undefined) {
-				return null;
-			}
-			return { ...crypto, rate: exchangeRate.rate };
-		});
-		const filteredNewMappedRateData = newMappedRateData.filter(
-			(rate) => rate !== null
-		);
-		setMappedRateData(filteredNewMappedRateData);
+			setMappedRateData(filteredNewMappedRateData);
+		}
 	}, [cryptoCardData, exchangeRates]);
 
 	useEffect(() => {
-		searchCryptos(mappedRateData);
+		if (!exchangeLoading) {
+			searchCryptos(mappedRateData);
+		}
 	}, [mappedRateData, searchField]);
 
 	// Close exchange display
@@ -80,12 +87,16 @@ const ExchangeDisplay = () => {
 				<div className="equals-container">
 					<h1 className="equals">=</h1>
 				</div>
-				<ExchangeCards
-					filteredCryptos={filteredCryptos}
-					rateMax={rateMax}
-					rateMin={rateMin}
-					favoritesIds={favoritesIds}
-				/>
+				<div className="exchanged-crypto-container">
+					<LoadingWrapper loading={exchangeLoading} cardAmount={4}>
+						<ExchangeCards
+							filteredCryptos={filteredCryptos}
+							rateMax={rateMax}
+							rateMin={rateMin}
+							favoritesIds={favoritesIds}
+						/>
+					</LoadingWrapper>
+				</div>
 			</div>
 		</>
 	);

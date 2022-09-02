@@ -5,11 +5,11 @@ import { ExchangeContext } from "../../contexts/exchange.context";
 import { FavoritesContext } from "../../contexts/favorites.context";
 
 const AssetCard = ({ favorite, ...cardAttributes }) => {
-	console.log(cardAttributes);
 	const { name, imageUrl, price_usd, volume_1day_usd, asset_id, size } =
 		cardAttributes;
 
-	const { createExchange, setExchangeLoading } = useContext(ExchangeContext);
+	const { createExchange, setExchangeBase, setExchangeLoading } =
+		useContext(ExchangeContext);
 	const { addCryptoToFavorites, removeCryptoFromFavorites } =
 		useContext(FavoritesContext);
 	const { openDisplayExchange } = useContext(NavigationContext);
@@ -41,10 +41,11 @@ const AssetCard = ({ favorite, ...cardAttributes }) => {
 		setDrawer(drawer ? false : true);
 	};
 
-	const handleExchangeClick = () => {
-		setExchangeLoading(true);
-		createExchange(cardAttributes);
-		openDisplayExchange();
+	const handleExchangeClick = async () => {
+		await setExchangeLoading(true);
+		await setExchangeBase(cardAttributes);
+		await openDisplayExchange();
+		await createExchange(cardAttributes);
 	};
 
 	const handleFavoriteClick = () => {
