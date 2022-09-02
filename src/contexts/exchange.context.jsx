@@ -3,6 +3,7 @@ import { getCryptoData } from "../api";
 
 export const ExchangeContext = createContext({
 	exchangeRates: {},
+	exchangeLoading: true,
 	getExchangeRate: () => {},
 	setExchangeRates: () => {},
 });
@@ -10,7 +11,7 @@ export const ExchangeContext = createContext({
 export const ExchangeProvider = ({ children }) => {
 	const [exchangeBase, setExchangeBase] = useState(null);
 	const [exchangeRates, setExchangeRates] = useState({});
-	const [exchangeLoading, setExchangeLoading] = useState(false);
+	const [exchangeLoading, setExchangeLoading] = useState(true);
 	const [exchangeError, setExchangeError] = useState(false);
 
 	const getExchangeRates = async (asset_id) => {
@@ -21,8 +22,6 @@ export const ExchangeProvider = ({ children }) => {
 	const createExchange = async (cardAttributes) => {
 		const asset_id = cardAttributes.asset_id;
 		await getExchangeRates(asset_id);
-		await setExchangeBase(cardAttributes);
-		setExchangeLoading(false);
 	};
 
 	const value = {
@@ -31,6 +30,7 @@ export const ExchangeProvider = ({ children }) => {
 		setExchangeRates,
 		exchangeLoading,
 		setExchangeLoading,
+		setExchangeBase,
 		exchangeBase,
 	};
 

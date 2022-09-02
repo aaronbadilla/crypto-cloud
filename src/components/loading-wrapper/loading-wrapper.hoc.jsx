@@ -1,117 +1,24 @@
 import "./loading-wrapper.styles.scss";
 
-const LoadingWrapper = ({ loading, children }) => {
+const LoadingWrapper = ({ loading, children, cardAmount }) => {
 	if (loading) {
+		var amountArray = [];
+		for (let i = 0; i < cardAmount; i++) {
+			amountArray.push(1);
+		}
 		return (
 			<>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
+				{amountArray.map((amount) => (
+					<div className="loading-card">
+						<div className="wrapper">
+							<div className="loading-title animate"></div>
+							<div className="loading-crypto-icon animate"></div>
+							<div className="loading-info animate"></div>
+							<div className="loading-info animate"></div>
+							<div className="loading-info animate"></div>
+						</div>
 					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
-				<div className="loading-card">
-					<div className="wrapper">
-						<div className="loading-title animate"></div>
-						<div className="loading-crypto-icon animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-						<div className="loading-info animate"></div>
-					</div>
-				</div>
+				))}
 			</>
 		);
 	}

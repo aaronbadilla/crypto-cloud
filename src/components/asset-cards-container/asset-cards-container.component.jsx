@@ -30,7 +30,7 @@ const AssetCardsContainer = ({ loading }) => {
 
 	return (
 		<div className="asset-cards-container">
-			<LoadingWrapper loading={loading}>
+			<LoadingWrapper loading={loading} cardAmount={20}>
 				{filteredCryptos
 					.filter((_, index) => index < displayLimiter)
 					.map(({ asset_id, ...otherProps }) => {
