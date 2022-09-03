@@ -10,7 +10,11 @@ import LoadingWrapper from "../../components/loading-wrapper/loading-wrapper.hoc
 import CloseButton from "../../components/close-button/close-button.component";
 import { FavoritesContext } from "../../contexts/favorites.context";
 
+const startingRateMin = 0;
+const startingRateMax = 3;
+
 const ExchangeDisplay = () => {
+	const [noRates, setNoRates] = useState(false);
 	const [rateMin, setRateMin] = useState(0);
 	const [rateMax, setRateMax] = useState(3);
 	const [mappedRateData, setMappedRateData] = useState([]);
@@ -22,7 +26,14 @@ const ExchangeDisplay = () => {
 		useContext(UtilityContext);
 	const { favoritesIds } = useContext(FavoritesContext);
 
-	console.log(exchangeLoading);
+	console.log(filteredCryptos);
+
+	useEffect(() => {
+		setRateMin(startingRateMin);
+		setRateMax(startingRateMax);
+	}, [searchField]);
+
+	console.log(exchangeRates);
 
 	// create new data object to map onto cards
 	useEffect(() => {
@@ -48,6 +59,15 @@ const ExchangeDisplay = () => {
 			searchCryptos(mappedRateData);
 		}
 	}, [mappedRateData, searchField]);
+
+	// display message if their are no rates
+	useEffect(() => {
+		if (filteredCryptos.length === 0) {
+			setNoRates(true);
+		} else {
+			setNoRates(false);
+		}
+	}, [filteredCryptos]);
 
 	// Close exchange display
 	const handleCloseExchange = () => {
@@ -88,14 +108,20 @@ const ExchangeDisplay = () => {
 					<h1 className="equals">=</h1>
 				</div>
 				<div className="exchanged-crypto-container">
-					<LoadingWrapper loading={exchangeLoading} cardAmount={4}>
-						<ExchangeCards
-							filteredCryptos={filteredCryptos}
-							rateMax={rateMax}
-							rateMin={rateMin}
-							favoritesIds={favoritesIds}
-						/>
-					</LoadingWrapper>
+					{noRates ? (
+						<div className="no-rates-message-container">
+							<h1 className="no-rates-message">No rates available</h1>
+						</div>
+					) : (
+						<LoadingWrapper loading={exchangeLoading} cardAmount={4}>
+							<ExchangeCards
+								filteredCryptos={filteredCryptos}
+								rateMax={rateMax}
+								rateMin={rateMin}
+								favoritesIds={favoritesIds}
+							/>
+						</LoadingWrapper>
+					)}
 				</div>
 			</div>
 		</>
