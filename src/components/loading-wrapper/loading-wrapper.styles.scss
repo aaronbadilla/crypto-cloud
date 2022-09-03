@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     width: 200px;
+    height: 210px;
     border: .5px;
     border-radius: 5%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -17,15 +18,15 @@
       animation: fullView 0.5s forwards linear;
   
       .loading-title {
-        margin: 30px auto;
-        height: 40px;
+        margin: 10px auto;
+        height: 30px;
         width: 150px;
         border-radius: 5%;
 
       }
       .loading-crypto-icon {
-        height:100px;
-        width: 100px;
+        height:80px;
+        width: 80px;
         transition: 1s ease;
         margin: 20px auto 20px auto;
         border-radius: 100%;
@@ -33,7 +34,7 @@
 
       .loading-info {
         height: 10px;
-        margin: 20px auto;
+        margin: 10px auto;
         
         width: 90%;
       }

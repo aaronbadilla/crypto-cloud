@@ -46,6 +46,7 @@ const AssetCard = ({ favorite, ...cardAttributes }) => {
 		await setExchangeBase(cardAttributes);
 		await openDisplayExchange();
 		await createExchange(cardAttributes);
+		setExchangeLoading(false);
 	};
 
 	const handleFavoriteClick = () => {
