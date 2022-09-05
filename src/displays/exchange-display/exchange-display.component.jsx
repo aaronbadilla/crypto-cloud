@@ -26,14 +26,10 @@ const ExchangeDisplay = () => {
 		useContext(UtilityContext);
 	const { favoritesIds } = useContext(FavoritesContext);
 
-	console.log(filteredCryptos);
-
 	useEffect(() => {
 		setRateMin(startingRateMin);
 		setRateMax(startingRateMax);
 	}, [searchField]);
-
-	console.log(exchangeRates);
 
 	// create new data object to map onto cards
 	useEffect(() => {
@@ -60,7 +56,7 @@ const ExchangeDisplay = () => {
 		}
 	}, [mappedRateData, searchField]);
 
-	// display message if their are no rates
+	// display message if there are no rates
 	useEffect(() => {
 		if (filteredCryptos.length === 0) {
 			setNoRates(true);
@@ -68,6 +64,8 @@ const ExchangeDisplay = () => {
 			setNoRates(false);
 		}
 	}, [filteredCryptos]);
+
+	console.log(filteredCryptos);
 
 	// Close exchange display
 	const handleCloseExchange = () => {

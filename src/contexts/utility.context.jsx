@@ -54,6 +54,7 @@ export const UtilityProvider = ({ children }) => {
 		filteredCryptos,
 		onSearchChange,
 		searchField,
+		setSearchField,
 		sortByDailyVolume,
 		sortByPrice,
 	};

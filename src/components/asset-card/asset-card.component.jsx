@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { NavigationContext } from "../../contexts/navigation.context";
 import { ExchangeContext } from "../../contexts/exchange.context";
 import { FavoritesContext } from "../../contexts/favorites.context";
+import { UtilityContext } from "../../contexts/utility.context";
 
 const AssetCard = ({ favorite, ...cardAttributes }) => {
 	const { name, imageUrl, price_usd, volume_1day_usd, asset_id, size } =
@@ -12,6 +13,7 @@ const AssetCard = ({ favorite, ...cardAttributes }) => {
 		useContext(ExchangeContext);
 	const { addCryptoToFavorites, removeCryptoFromFavorites } =
 		useContext(FavoritesContext);
+	const { setSearchField } = useContext(UtilityContext);
 	const { openDisplayExchange } = useContext(NavigationContext);
 	const [drawer, setDrawer] = useState(false);
 	const [liked, setLiked] = useState(false);
@@ -42,6 +44,7 @@ const AssetCard = ({ favorite, ...cardAttributes }) => {
 	};
 
 	const handleExchangeClick = async () => {
+		setSearchField("");
 		await setExchangeLoading(true);
 		await setExchangeBase(cardAttributes);
 		await openDisplayExchange();
