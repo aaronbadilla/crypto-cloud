@@ -40,6 +40,7 @@ export const UtilityProvider = ({ children }) => {
 	const sortByPrice = () => {
 		setFilteredCryptos((prevFilteredCryptos) => {
 			const cryptosToSort = [...prevFilteredCryptos];
+			console.log(cryptosToSort);
 			const sortArray = (crypto1, crypto2) => {
 				if (crypto1.price_usd > crypto2.price_usd) return -1;
 				if (crypto1.price_usd < crypto2.price_usd) return 1;
