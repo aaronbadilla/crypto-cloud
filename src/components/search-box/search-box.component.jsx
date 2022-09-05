@@ -3,7 +3,7 @@ import { UtilityContext } from "../../contexts/utility.context";
 import "./search-box.styles.scss";
 
 const SearchBox = ({ placeholder }) => {
-	const { onSearchChange } = useContext(UtilityContext);
+	const { onSearchChange, searchField } = useContext(UtilityContext);
 
 	return (
 		<input
@@ -11,6 +11,7 @@ const SearchBox = ({ placeholder }) => {
 			type="search"
 			placeholder={placeholder}
 			onChange={onSearchChange}
+			value={searchField}
 		/>
 	);
 };
