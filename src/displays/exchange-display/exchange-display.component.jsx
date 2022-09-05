@@ -48,13 +48,13 @@ const ExchangeDisplay = () => {
 			);
 			setMappedRateData(filteredNewMappedRateData);
 		}
-	}, [cryptoCardData, exchangeRates]);
+	}, [cryptoCardData, exchangeRates, exchangeLoading]);
 
 	useEffect(() => {
 		if (!exchangeLoading) {
 			searchCryptos(mappedRateData);
 		}
-	}, [mappedRateData, searchField]);
+	}, [mappedRateData, searchField, exchangeRates]);
 
 	// display message if there are no rates
 	useEffect(() => {
@@ -64,8 +64,6 @@ const ExchangeDisplay = () => {
 			setNoRates(false);
 		}
 	}, [filteredCryptos]);
-
-	console.log(filteredCryptos);
 
 	// Close exchange display
 	const handleCloseExchange = () => {
