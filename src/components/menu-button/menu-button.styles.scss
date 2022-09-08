@@ -11,6 +11,10 @@
     transition: 1s ease;
     border: none;
     background-color: white;
+    
+    @media screen and (max-width:660px) {
+        font-size:16px;
+    }
 
     &:hover {
         cursor: pointer;
