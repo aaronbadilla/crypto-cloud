@@ -26,6 +26,10 @@
         background-color: white;
         transition: 1s ease;
 
+        @media screen and (max-width:660px) {
+            font-size:16px;
+        }
+
 
 
         &:hover {

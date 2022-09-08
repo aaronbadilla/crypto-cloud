@@ -11,7 +11,10 @@
     transition: 1s ease;
     border: none;
     background-color: white;
-    -webkit-appearance: none !important;
+
+    button {
+        -webkit-appearance: none !important;
+    }
 
     &:hover {
         cursor: pointer;
