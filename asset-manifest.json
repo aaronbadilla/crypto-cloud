@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/crypto-cloud/static/css/main.6373412b.css",
+    "main.css": "/crypto-cloud/static/css/main.4499daa0.css",
     "main.js": "/crypto-cloud/static/js/main.7e835357.js",
     "static/js/787.e6db0f9d.chunk.js": "/crypto-cloud/static/js/787.e6db0f9d.chunk.js",
     "index.html": "/crypto-cloud/index.html",
-    "main.6373412b.css.map": "/crypto-cloud/static/css/main.6373412b.css.map",
+    "main.4499daa0.css.map": "/crypto-cloud/static/css/main.4499daa0.css.map",
     "main.7e835357.js.map": "/crypto-cloud/static/js/main.7e835357.js.map",
     "787.e6db0f9d.chunk.js.map": "/crypto-cloud/static/js/787.e6db0f9d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6373412b.css",
+    "static/css/main.4499daa0.css",
     "static/js/main.7e835357.js"
   ]
 }
