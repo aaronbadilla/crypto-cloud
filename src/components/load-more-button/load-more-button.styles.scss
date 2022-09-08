@@ -1,0 +1,38 @@
+.button-container {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 660px) {
+        margin-bottom: 75px;
+      }
+
+      @media screen and (max-width: 300px) {
+        margin-bottom: 125px;
+      }
+
+    .load-more {
+        margin: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        height: auto;
+        width: 150px;
+        padding: 15px;
+        text-align: center;
+        color: #ffaabb;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        background-color: white;
+        transition: 1s ease;
+
+
+
+        &:hover {
+            cursor: pointer;
+            background-color: #A6E3E9;
+            transform: scale(1.1);
+            transition: 1s ease;
+        }
+    }
+}

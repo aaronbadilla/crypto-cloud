@@ -14,6 +14,10 @@
         margin: 0 auto
       }
 
+      @media screen and (max-width: 660px) {
+        height: 40px;
+      }
+
     .site-name {
         color: #A6E3E9;
     }

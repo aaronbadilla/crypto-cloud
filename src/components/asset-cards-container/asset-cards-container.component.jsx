@@ -5,6 +5,12 @@ import { FavoritesContext } from "../../contexts/favorites.context";
 import "./asset-cards-container.styles.scss";
 import AssetCard from "../asset-card/asset-card.component";
 import LoadingWrapper from "../loading-wrapper/loading-wrapper.hoc";
+import LoadMoreButton from "../load-more-button/load-more-button.component";
+import MenuButton from "../menu-button/menu-button.component";
+import SearchBox from "../search-box/search-box.component";
+import { NavigationContext } from "../../contexts/navigation.context";
+import TopMobileMenu from "../top-mobile-menu/top-mobile-menu.component";
+import BottomMobileMenu from "../bottom-mobile-menu/bottom-mobile-menu.component";
 
 const startingDisplay = 20;
 
@@ -14,6 +20,7 @@ const AssetCardsContainer = ({ loading }) => {
 		useContext(UtilityContext);
 	const { cryptoCardData } = useContext(CardDataContext);
 	const { favoritesIds } = useContext(FavoritesContext);
+	const { sortByDailyVolume, sortByPrice } = useContext(UtilityContext);
 	const handleLoadClick = () => {
 		setDisplayLimiter(
 			(prevDisplayNumber) => prevDisplayNumber + startingDisplay
@@ -30,6 +37,7 @@ const AssetCardsContainer = ({ loading }) => {
 
 	return (
 		<div className="asset-cards-container">
+			<TopMobileMenu />
 			<LoadingWrapper loading={loading} cardAmount={20}>
 				{filteredCryptos
 					.filter((_, index) => index < displayLimiter)
@@ -45,17 +53,9 @@ const AssetCardsContainer = ({ loading }) => {
 							/>
 						);
 					})}
-				<div className="button-container">
-					<button
-						type="button"
-						className="load-more"
-						aria-label="load more cryptos"
-						onClick={handleLoadClick}
-					>
-						LOAD MORE
-					</button>
-				</div>
+				<LoadMoreButton handleLoadClick={handleLoadClick} />
 			</LoadingWrapper>
+			<BottomMobileMenu />
 		</div>
 	);
 };
