@@ -4,7 +4,6 @@ import { NavigationContext } from "../../contexts/navigation.context";
 import { UtilityContext } from "../../contexts/utility.context";
 import { FavoritesContext } from "../../contexts/favorites.context";
 import CloseButton from "../../components/close-button/close-button.component";
-import FavoritesCards from "../../components/favorites-cards/favorites-cards.component";
 import LoadMoreButton from "../../components/load-more-button/load-more-button.component";
 import AssetCard from "../../components/asset-card/asset-card.component";
 import TopMobileMenu from "../../components/top-mobile-menu/top-mobile-menu.component";

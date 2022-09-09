@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import { UtilityContext } from "../../contexts/utility.context";
 import { CardDataContext } from "../../contexts/card-data.context";
 import { FavoritesContext } from "../../contexts/favorites.context";
@@ -6,9 +6,6 @@ import "./asset-cards-container.styles.scss";
 import AssetCard from "../asset-card/asset-card.component";
 import LoadingWrapper from "../loading-wrapper/loading-wrapper.hoc";
 import LoadMoreButton from "../load-more-button/load-more-button.component";
-import MenuButton from "../menu-button/menu-button.component";
-import SearchBox from "../search-box/search-box.component";
-import { NavigationContext } from "../../contexts/navigation.context";
 import TopMobileMenu from "../top-mobile-menu/top-mobile-menu.component";
 import BottomMobileMenu from "../bottom-mobile-menu/bottom-mobile-menu.component";
 
@@ -20,7 +17,6 @@ const AssetCardsContainer = ({ loading }) => {
 		useContext(UtilityContext);
 	const { cryptoCardData } = useContext(CardDataContext);
 	const { favoritesIds } = useContext(FavoritesContext);
-	const { sortByDailyVolume, sortByPrice } = useContext(UtilityContext);
 	const handleLoadClick = () => {
 		setDisplayLimiter(
 			(prevDisplayNumber) => prevDisplayNumber + startingDisplay
