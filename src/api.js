@@ -1,7 +1,7 @@
 import { testCryptoPriceObject, testExchangeData } from "./mock-api";
 import { testCryptoImageObject } from "./mock-api";
 
-const useMock = false;
+const useMock = true;
 
 const baseUrl = `https://rest.coinapi.io/`;
 const headers = {
