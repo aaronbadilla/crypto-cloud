@@ -16,7 +16,7 @@ export const CardDataProvider = ({ children }) => {
 	// RETRIEVE CRYPTO PRICE DATA & CATCH ERRORS
 	const makeApiCalls = async () => {
 		const priceData = await getCryptoData("v1/assets");
-		const iconsData = await getCryptoData("v1/assets/icons/200x200");
+		const iconsData = await getCryptoData("v1/exchanges/icons/200x200");
 		setCryptoPrices(priceData);
 		setCryptoIcons(iconsData);
 		setCardDataLoading(false);
