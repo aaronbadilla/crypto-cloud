@@ -21,6 +21,7 @@ export const CardDataProvider = ({ children }) => {
 		setCryptoIcons(iconsData);
 		setCardDataLoading(false);
 	};
+	console.log(iconsData);
 
 	// COMBINE PRICE AND ICON DATA TO DISPLAY IN CARD
 
@@ -43,6 +44,7 @@ export const CardDataProvider = ({ children }) => {
 						price_usd: cryptoPrice(),
 					};
 				}
+				console.log(image.url);
 				return {
 					...crypto,
 					imageUrl: image.url,
