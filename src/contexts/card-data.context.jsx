@@ -16,12 +16,11 @@ export const CardDataProvider = ({ children }) => {
 	// RETRIEVE CRYPTO PRICE DATA & CATCH ERRORS
 	const makeApiCalls = async () => {
 		const priceData = await getCryptoData("v1/assets");
-		const iconsData = await getCryptoData("v1/exchanges/icons/200");
+		const iconsData = await getCryptoData("v1/assets/icons/200");
 		setCryptoPrices(priceData);
 		setCryptoIcons(iconsData);
 		setCardDataLoading(false);
 	};
-	console.log(iconsData);
 
 	// COMBINE PRICE AND ICON DATA TO DISPLAY IN CARD
 
@@ -44,7 +43,6 @@ export const CardDataProvider = ({ children }) => {
 						price_usd: cryptoPrice(),
 					};
 				}
-				console.log(image.url);
 				return {
 					...crypto,
 					imageUrl: image.url,
